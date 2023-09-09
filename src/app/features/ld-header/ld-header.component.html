@@ -14,9 +14,7 @@
     <div class="wrapper -has-user">
         <div></div>
 
-        <div class="logo-wrapper">
-            <img alt="Logo da DevFreela" class="image" src="assets/logo/devfreela.svg">
-        </div>
+       <ng-container *ngTemplateOutlet="LogoTemplate"></ng-container>
 
         <div class="user" *ngIf="hasUser">
             <div class="info">
@@ -30,3 +28,9 @@
 
     </div>
 </header>
+
+<ng-template #LogoTemplate>
+    <div class="logo-wrapper">
+        <img alt="Logo da DevFreela" class="image" src="assets/logo/devfreela.svg">
+    </div>
+</ng-template>
