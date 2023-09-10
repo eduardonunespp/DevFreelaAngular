@@ -1,68 +1,86 @@
-<div class="ld-login">
-  <div class="ld-wrapper">
-    <ld-header />
+<div class="ld-register">
+  <ld-wrapper>
+    <form class="left" (submit)="cadastrar()" action="javascript:void(0)" [formGroup]="registerForm">
 
-    <main class="main-content">
-      <form class="left" (submit)="cadastrar()" action="javascript:void(0)">
-        <h1 class="main-title">
-          <span class="up">Olá!</span>
-          <span class="down">Vamos criar seu cadastro.</span>
-        </h1>
+      <h1 class="main-title">
+        <span class="up">Olá!</span>
+        <span class="down">Vamos criar seu cadastro.</span>
+      </h1>
 
-        <div class="radio-buttons">
-          <h3 class="title">Qual o seu perfil?</h3>
-          <div class="buttons">
-            <label class="ld-radio">
-              Dev
-              <input name="role" type="radio" />
-              <span class="checkmark"></span>
-            </label>
+      <div class="radio-buttons">
+        <h3 class="title">Qual o seu perfil?</h3>
+        <div class="buttons">
+          <label class="ld-radio">
+            Dev
+            <input name="role" type="radio" />
+            <span class="checkmark"></span>
+          </label>
 
-            <label class="ld-radio">
-              Cliente
-              <input name="role" type="radio" />
-              <span class="checkmark"></span>
-            </label>
-          </div>
+          <label class="ld-radio">
+            Cliente
+            <input name="role" type="radio" />
+            <span class="checkmark"></span>
+          </label>
         </div>
-
-        <input
-          required
-          id="fullName"
-          class="ld-input"
-          placeholder="Nome completo"
-        />
-        <input
-          required
-          id="birthdate"
-          type="date"
-          class="ld-input"
-          placeholder="Data de nascimento"
-        />
-        <input
-          required
-          id="email"
-          type="email"
-          class="ld-input"
-          placeholder="Email"
-        />
-        <input
-          required
-          id="password"
-          type="password"
-          class="ld-input"
-          placeholder="Senha"
-        />
-
-        <button type="submit" class="ld-button">Continuar</button>
-      </form>
-      <div class="right">
-        <img
-          class="image"
-          alt="Fundo de decoração com 3 cubos com fundo gradient das cores do arco-iris"
-          src="assets/image/bg-cubes.png"
-        />
       </div>
-    </main>
-  </div>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Nome Completo</mat-label>
+        <input matInput formControlName="fullName" />
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Data de Nascimento</mat-label>
+        <input type="date" matInput formControlName="birthdate" />
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" />
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Senha</mat-label>
+        <input matInput formControlName="password" />
+      </mat-form-field>
+<!-- 
+      <input
+        required
+        formControlName="fullName"
+        id="fullName"
+        class="ld-input"
+        placeholder="Nome completo"
+      />
+      <input
+        required
+        id="birthdate"
+        type="date"
+        class="ld-input"
+        placeholder="Data de nascimento"
+      />
+      <input
+        required
+        id="email"
+        type="email"
+        class="ld-input"
+        placeholder="Email"
+      />
+      <input
+        required
+        id="password"
+        type="password"
+        class="ld-input"
+        placeholder="Senha"
+      /> -->
+
+      <ld-button text="Continuar" />
+    </form>
+    <div class="right">
+      <img
+        class="image"
+        alt="Fundo de decoração com 3 cubos com fundo gradient das cores do arco-iris"
+        src="assets/image/bg-cubes.png"
+      />
+    </div>
+  </ld-wrapper>
 </div>

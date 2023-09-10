@@ -4,16 +4,23 @@ import { RegisterComponent } from './register.component';
 import { RegisterRoutingModule } from './register.routing.module';
 import { LdHeaderModule } from 'src/app/features/ld-header/ld-header.module';
 import { LdButtonModule } from 'src/app/shared/components/ld-button/ld-button.module';
+import { LdWrapperModule } from 'src/app/features/ld-wrapper/ld-wrapper.module';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms'
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
-  declarations: [
-    RegisterComponent
-  ],
+  declarations: [RegisterComponent],
   imports: [
     CommonModule,
     RegisterRoutingModule,
     LdHeaderModule,
-    LdButtonModule
-  ]
+    LdButtonModule,
+    LdWrapperModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatFormFieldModule
+  ],
 })
-export class RegisterModule { }
+export class RegisterModule {}
