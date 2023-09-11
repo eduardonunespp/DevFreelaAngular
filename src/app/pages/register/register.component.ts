@@ -1,7 +1,7 @@
 //@ts-nocheck
 
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -10,18 +10,15 @@ import Swal from 'sweetalert2';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-
-  constructor(private fb: FormBuilder) {
-
-  }
+  constructor(private fb: FormBuilder) {}
 
   registerForm: FormGroup = this.fb.group({
-    role: ['', [Validators.required ]],
+    role: ['', [Validators.required]],
     fullName: ['', [Validators.required]],
     birthdate: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required]]
-  })
+    password: ['', [Validators.required]],
+  });
 
   ngOnInit(): void {}
 
@@ -38,7 +35,7 @@ export class RegisterComponent implements OnInit {
     return counter !== list.length;
   }
 
-  const api = 'https://64fc8b67605a026163ae9ad2.mockapi.io/api/v1'
+  api = 'https://64fc8b67605a026163ae9ad2.mockapi.io/api/v1';
 
   cadastrar() {
     // Checa se alguma role foi checada.
@@ -85,13 +82,14 @@ export class RegisterComponent implements OnInit {
             window.location.href = 'list.html';
           }
         });
-      }).catch((error) => {
+      })
+      .catch((error) => {
         Swal.fire({
           title: 'Falha!',
           text: 'Erro ao acessar a api',
           icon: 'error',
           confirmButtonText: 'Ok!',
-        })
-      })
+        });
+      });
   }
 }
