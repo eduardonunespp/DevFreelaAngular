@@ -3,6 +3,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { msg } from '../../shared/utils';
 
 @Component({
   selector: 'app-register',
@@ -10,6 +11,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
+  msg = msg;
+
   constructor(private fb: FormBuilder) {}
 
   registerForm: FormGroup = this.fb.group({
@@ -91,5 +94,9 @@ export class RegisterComponent implements OnInit {
           confirmButtonText: 'Ok!',
         });
       });
+  }
+
+  isInvalid(inputName: string, validatorName: string) {
+    return this.registerForm.get(inputName)?.errors[validatorName];
   }
 }
