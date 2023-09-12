@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { msg } from '../../shared/utils';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.prod';
+import { RegisterService } from './services/service.service';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +16,10 @@ import { environment } from 'src/environments/environment.prod';
 export class RegisterComponent implements OnInit {
   msg = msg;
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {}
+  constructor(
+    private fb: FormBuilder,
+    private registerService: RegisterService
+  ) {}
 
   registerForm: FormGroup = this.fb.group({
     role: ['', [Validators.required]],
@@ -25,19 +29,24 @@ export class RegisterComponent implements OnInit {
     password: ['', [Validators.required]],
   });
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.registerService.getUser().subscribe((data) => 
+    console.log(data)
+    ))
+  }
 
   toogleRole(role: 'dev' | 'cliente') {
     this.registerForm.get('role')?.setValue(role);
   }
 
-  api = 'https://64fc8b67605a026163ae9ad2.mockapi.io/api/v1';
-
   cadastrar() {
+
+    
+
     if (this.registerForm.valid) {
       let payload = this.registerForm.value;
 
-      this.http.post(`${environment.apiUrl}/users`, payload).subscribe(
+      this.registerService.postUser(payload).subscribe(
         (response) => {
           Swal.fire({
             title: 'Bom Trabalho!',
