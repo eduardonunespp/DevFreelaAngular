@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { msg } from '../../shared/utils';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +15,7 @@ import { msg } from '../../shared/utils';
 export class RegisterComponent implements OnInit {
   msg = msg;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private http: HttpClient) {}
 
   registerForm: FormGroup = this.fb.group({
     role: ['', [Validators.required]],
@@ -29,46 +31,42 @@ export class RegisterComponent implements OnInit {
     this.registerForm.get('role')?.setValue(role);
   }
 
-  checkIfAnyRoleIsChecked() {
-    let list = document.getElementsByName('role');
-    let counter = 0;
-
-    for (let radioButton of list) {
-      if (radioButton.checked === false) {
-        counter++;
-      }
-    }
-
-    return counter !== list.length;
-  }
-
   api = 'https://64fc8b67605a026163ae9ad2.mockapi.io/api/v1';
 
   cadastrar() {
-    this.registerForm.markAllAsTouched();
+    if (this.registerForm.valid) {
+      let payload = this.registerForm.value;
 
-
-    if(this.registerForm.valid){
-      console.log(this.registerForm.value)
+      this.http.post(`${environment.apiUrl}/users`, payload).subscribe(
+        (response) => {
+          Swal.fire({
+            title: 'Bom Trabalho!',
+            text: 'Cadastrado com sucesso!',
+            icon: 'success',
+            confirmButtonText: 'Ok!',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              localStorage.setItem('userName', response.fullName);
+              localStorage.setItem(
+                'role',
+                response.role === 'dev' ? 'Desenvolvedor' : 'Cliente'
+              );
+              localStorage.setItem('idClient', response.id);
+            }
+          });
+        },
+        (error) => {
+          Swal.fire({
+            title: 'Falha!',
+            text: 'Algo de errado aconteceu, se o problema persistir, consulte o administrador do sistema',
+            icon: 'error',
+            confirmButtonText: 'Ok!',
+          });
+        }
+      );
+    } else {
+      this.registerForm.markAllAsTouched();
     }
-
-    // Checa se alguma role foi checada.
-    if (this.checkIfAnyRoleIsChecked() === false) {
-      Swal.fire('Algo de errado...', 'Marque alguma role!', 'error');
-      return;
-    }
-
-    // Inicia a massa de dados (payload)
-    let payload = {
-      role:
-        document.getElementsByName('role')[0].checked == true
-          ? 'dev'
-          : 'cliente',
-      fullName: document.querySelector('#fullName').value,
-      birthdate: document.querySelector('#birthdate').value,
-      email: document.querySelector('#email').value,
-      password: document.querySelector('#password').value,
-    };
 
     // Enviar para API
     fetch(`${this.api}/users`, {
