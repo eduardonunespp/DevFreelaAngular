@@ -2,6 +2,9 @@
   <ld-wrapper>
     <form class="left" (submit)="cadastrar()" action="javascript:void(0)" [formGroup]="registerForm">
 
+      {{ registerForm.value | json }}
+
+
       <h1 class="main-title">
         <span class="up">Olá!</span>
         <span class="down">Vamos criar seu cadastro.</span>
@@ -12,16 +15,17 @@
         <div class="buttons">
           <label class="ld-radio">
             Dev
-            <input name="role" type="radio" />
+            <input name="role" type="radio" (click)="toogleRole('dev')" />
             <span class="checkmark"></span>
           </label>
 
           <label class="ld-radio">
             Cliente
-            <input name="role" type="radio" />
+            <input name="role" type="radio" (click)="toogleRole('cliente')" />
             <span class="checkmark"></span>
           </label>
         </div>
+        <span class="role-invalid" *ngIf="isInvalid('role', 'required')">Preencha uma role</span>
       </div>
 
 

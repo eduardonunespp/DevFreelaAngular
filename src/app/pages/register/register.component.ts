@@ -25,6 +25,10 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  toogleRole(role: 'dev' | 'cliente') {
+    this.registerForm.get('role')?.setValue(role);
+  }
+
   checkIfAnyRoleIsChecked() {
     let list = document.getElementsByName('role');
     let counter = 0;
@@ -41,6 +45,13 @@ export class RegisterComponent implements OnInit {
   api = 'https://64fc8b67605a026163ae9ad2.mockapi.io/api/v1';
 
   cadastrar() {
+    this.registerForm.markAllAsTouched();
+
+
+    if(this.registerForm.valid){
+      console.log(this.registerForm.value)
+    }
+
     // Checa se alguma role foi checada.
     if (this.checkIfAnyRoleIsChecked() === false) {
       Swal.fire('Algo de errado...', 'Marque alguma role!', 'error');
@@ -97,6 +108,12 @@ export class RegisterComponent implements OnInit {
   }
 
   isInvalid(inputName: string, validatorName: string) {
-    return this.registerForm.get(inputName)?.errors[validatorName];
+    const formControl: any = this.registerForm.get(inputName);
+    if (formControl.errors !== null) {
+      return (
+        formControl.errors[validatorName] &&
+        this.registerForm.get(inputName)?.touched
+      );
+    }
   }
 }
