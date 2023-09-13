@@ -1,6 +1,7 @@
-//@ts-nocheck
-
 import { Component, OnInit } from '@angular/core';
+import { ListItem } from './types';
+import { environment } from 'src/environments/environment.prod';
+import { ListService } from './service/list.service';
 
 @Component({
   selector: 'app-list',
@@ -8,49 +9,66 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list.component.scss'],
 })
 export class ListComponent implements OnInit {
-  ngOnInit(): void {
-    window.onload = function () {
-      document.querySelector('#name').innerText =
-        localStorage.getItem('userName');
-      document.querySelector('#role').innerText = localStorage.getItem('role');
+  list: ListItem[] = [];
+  products: string = 'w';
 
-      this.getProjects();
-    };
+  constructor(private listService: ListService) {}
+
+  ngOnInit(): void {
+    // window.onload = function () {
+    //   document.querySelector('#name').innerText =
+    //     localStorage.getItem('userName');
+    //   document.querySelector('#role').innerText = localStorage.getItem('role');
+
+    // };
+    this.getProjects();
   }
 
   getProjects() {
-    fetch('https://622cd1e6087e0e041e147214.mockapi.io/api/projects')
-      .then((response) => response.json())
-      .then((response) => {
-        this.list = response;
-        this.buildTable();
-      });
+    this.listService.getList().subscribe((response) => {
+      this.list = response;
+      this.buildTable();
+    });
   }
 
+  // getProjects() {
+  //   this.listService.getList()
+  //     .then((response) => response.json())
+  //     .then((response: ListItem[]) => {
+  //       this.list = response
+  //       this.buildTable()
+  //     });
+  // }
+
   buildTable() {
-    document.querySelector('#table-body').innerHTML = '';
+    (document.querySelector('#table-body') as any).innerHTML = '';
     const idClient = localStorage.getItem('idClient');
 
-    list = list.filter((el) => el.idClient === idClient);
+    console.log(idClient);
 
-    list.forEach((el) => {
+    this.list = this.list.filter(
+      (listItem: ListItem) => listItem.idClient.toString() === idClient
+    );
+
+    this.list.forEach((listItem) => {
       let template = `
             <div class="row">
                 <div class="title-description">
-                    <h6 class="title">${el.title}</h6>
-                    <p class="description">${el.description}</p>
+                    <h6 class="title">${listItem.title}</h6>
+                    <p class="description">${listItem.description}</p>
                 </div>
-                <div class="price">R$ ${el.totalCost}</div>
+                <div class="price">R$ ${listItem.totalCost}</div>
                 <div class="actions">
-                    <span class="edit material-icons" onclick="goToEdit(${el.id})">edit</span>
-                    <span class="delete material-icons" onclick="deleteProject(${el.id})">delete_outline</span>
+                    <span class="edit material-icons" onclick="goToEdit(${listItem.id})">edit</span>
+                    <span class="delete material-icons" onclick="deleteProject(${listItem.id})">delete_outline</span>
                 </div>
             </div>
         `;
 
-      document
-        .querySelector('#table-body')
-        .insertAdjacentHTML('beforeend', template);
+      (document.querySelector('#table-body') as any).insertAdjacentHTML(
+        'beforeend',
+        template
+      );
     });
   }
 }
