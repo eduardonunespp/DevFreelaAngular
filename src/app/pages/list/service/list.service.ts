@@ -4,14 +4,14 @@ import { environment } from 'src/environments/environment.prod';
 import { ListItem } from '../types';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ListService {
-  products: string = 'w'
+  products: string = 'w';
 
-  constructor(private service: HttpClient) { }
+  constructor(private service: HttpClient) {}
 
-  getList(){
-    return this.service.get<ListItem[]>(`${environment}/${this.products}`)
+  getList() {
+    return this.service.get<ListItem[]>(`${environment.apiUrl}/projects`);
   }
 }

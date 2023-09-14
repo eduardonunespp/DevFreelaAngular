@@ -26,6 +26,7 @@ export class ListComponent implements OnInit {
 
   getProjects() {
     this.listService.getList().subscribe((response) => {
+      console.log(response);
       this.list = response;
       this.buildTable();
     });

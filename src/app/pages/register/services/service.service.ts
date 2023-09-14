@@ -4,18 +4,16 @@ import { environment } from 'src/environments/environment.prod';
 import { User } from '../types';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RegisterService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  postUser(payload: User){
-    return this.http.post(`${environment.apiUrl}/users`, payload)
+  postUser(payload: User) {
+    return this.http.post(`${environment.apiUrl}/users`, payload);
   }
 
-  getUser(){
-    return this.http.get(`${environment.apiUrl}/users`)
+  getUser() {
+    return this.http.get(`${environment.apiUrl}/users`);
   }
-
 }

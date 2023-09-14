@@ -24,15 +24,15 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup = this.fb.group({
     role: ['', [Validators.required]],
     fullName: ['', [Validators.required]],
-    birthdate: ['', [Validators.required]],
+    birthDate: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]],
   });
 
   ngOnInit(): void {
-    console.log(this.registerService.getUser().subscribe((data) => 
-    console.log(data)
-    ))
+    console.log(
+      this.registerService.getUser().subscribe((data) => console.log(data))
+    );
   }
 
   toogleRole(role: 'dev' | 'cliente') {
@@ -40,9 +40,6 @@ export class RegisterComponent implements OnInit {
   }
 
   cadastrar() {
-
-    
-
     if (this.registerForm.valid) {
       let payload = this.registerForm.value;
 
