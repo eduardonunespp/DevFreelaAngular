@@ -7,11 +7,17 @@ import { ListItem } from '../types';
   providedIn: 'root',
 })
 export class ListService {
-  products: string = 'w';
+  constructor(private http: HttpClient) {}
 
-  constructor(private service: HttpClient) {}
-
-  getList() {
-    return this.service.get<ListItem[]>(`${environment.apiUrl}/projects`);
+  getProjects() {
+    return this.http.get<ListItem[]>(`${environment.apiUrl}/projects`);
   }
+
+  deleteProject(id: string | number) {
+    return this.http.delete(`${environment.apiUrl}/projects`);
+  }
+
+  // editProjects(id: string | number) {
+  //   return this.http.put(`${environment.apiUrl}/projects/${id}`);
+  // }
 }
