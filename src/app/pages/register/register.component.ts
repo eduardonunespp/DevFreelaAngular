@@ -7,6 +7,7 @@ import { msg } from '../../shared/utils';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.prod';
 import { RegisterService } from './services/service.service';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +19,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private registerService: RegisterService
+    private registerService: RegisterService,
+    private router: Router
   ) {}
 
   registerForm: FormGroup = this.fb.group({
@@ -58,6 +60,8 @@ export class RegisterComponent implements OnInit {
                 response.role === 'dev' ? 'Desenvolvedor' : 'Cliente'
               );
               localStorage.setItem('idClient', response.id);
+
+              this.router.navigateByUrl('list')
             }
           });
         },
@@ -73,43 +77,10 @@ export class RegisterComponent implements OnInit {
     } else {
       this.registerForm.markAllAsTouched();
     }
+  }
 
     // Enviar para API
-    fetch(`${this.api}/users`, {
-      method: 'POST',
-      body: JSON.stringify(payload),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        Swal.fire({
-          title: 'Bom Trabalho!',
-          text: 'Cadastrado com sucesso!',
-          icon: 'success',
-          confirmButtonText: 'Ok!',
-        }).then((result) => {
-          localStorage.setItem('userName', response.fullName);
-          localStorage.setItem(
-            'role',
-            response.role === 'dev' ? 'Desenvolvedor' : 'Cliente'
-          );
-          localStorage.setItem('idClient', response.id);
-          if (result.isConfirmed) {
-            window.location.href = 'list.html';
-          }
-        });
-      })
-      .catch((error) => {
-        Swal.fire({
-          title: 'Falha!',
-          text: 'Erro ao acessar a api',
-          icon: 'error',
-          confirmButtonText: 'Ok!',
-        });
-      });
-  }
+  
 
   isInvalid(inputName: string, validatorName: string) {
     const formControl: any = this.registerForm.get(inputName);

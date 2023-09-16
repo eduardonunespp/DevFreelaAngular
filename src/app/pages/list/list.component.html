@@ -3,7 +3,7 @@
     <div class="title-button">
       <h1 class="title">Projetos</h1>
       <div class="button-wrapper">
-        <a href="project-create-edit.html" class="ld-button -small"
+        <a (click)="redirectTo('project-create-edit')" class="ld-button -small"
           >Novo Projeto</a
         >
       </div>
@@ -28,7 +28,7 @@
             </div>
             <div class="price">{{ listItem.totalCost | currency : "R$" }}</div>
             <div class="actions">
-              <span class="edit material-icons" (click)="goToEdit(listItem.id)"
+              <span class="edit material-icons" (click)="redirectToWithParams('project-create-edit', listItem.id)"
                 >edit
               </span>
               <span

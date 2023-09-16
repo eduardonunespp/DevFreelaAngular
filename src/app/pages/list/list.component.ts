@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ListItem } from './types';
 import { environment } from 'src/environments/environment.prod';
 import { ListService } from './service/list.service';
+import { NavigationBehaviorOptions, Router } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -10,17 +11,16 @@ import { ListService } from './service/list.service';
 })
 export class ListComponent implements OnInit {
   list: ListItem[] = [];
-
   isLoadingTable: boolean = true;
 
-  constructor(private listService: ListService) {}
+  constructor(private listService: ListService, private router: Router) {}
 
   ngOnInit(): void {
     this.getProjects();
   }
 
   goToEdit(id: string | any) {
-    window.location.href = `project-create-edit.html?id=${id}`;
+    this.router.navigateByUrl(`/project-create-edit/${id}`);
   }
 
   deleteProject(id: string | any) {
@@ -48,26 +48,19 @@ export class ListComponent implements OnInit {
     this.list = this.list.filter(
       (listItem: ListItem) => listItem.idClient.toString() === idClient
     );
+  }
 
-    // this.list.forEach((listItem) => {
-    //   let template = `
-    //         <div class="row">
-    //             <div class="title-description">
-    //                 <h6 class="title">${listItem.title}</h6>
-    //                 <p class="description">${listItem.description}</p>
-    //             </div>
-    //             <div class="price">R$ ${listItem.totalCost}</div>
-    //             <div class="actions">
-    //                 <span class="edit material-icons" onclick="goToEdit(${listItem.id})">edit</span>
-    //                 <span class="delete material-icons" onclick="deleteProject(${listItem.id})">delete_outline</span>
-    //             </div>
-    //         </div>
-    //     `;
+  redirectTo(url: string) {
+    this.router.navigateByUrl(url);
+  }
 
-    //   (document.querySelector('#table-body') as any).insertAdjacentHTML(
-    //     'beforeend',
-    //     template
-    //   );
-    // });
+  redirectToWithParams(url: string, id: string | undefined) {
+    const dataParams: NavigationBehaviorOptions = {
+      state: {
+        id: id,
+      },
+    };
+
+    this.router.navigate([`${url}`], dataParams);
   }
 }
