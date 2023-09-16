@@ -12,6 +12,10 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/list/list.module').then((m) => m.ListModule),
   },
+  {
+    path: 'project-create-edit',
+    loadChildren: () => import('./pages/create-edit/create-edit.module').then((m) => m.CreateEditModule)
+  }
 ];
 
 @NgModule({
