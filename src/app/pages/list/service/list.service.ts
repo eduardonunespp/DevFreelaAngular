@@ -17,7 +17,4 @@ export class ListService {
     return this.http.delete(`${environment.apiUrl}/projects`);
   }
 
-  // editProjects(id: string | number) {
-  //   return this.http.put(`${environment.apiUrl}/projects/${id}`);
-  // }
 }
