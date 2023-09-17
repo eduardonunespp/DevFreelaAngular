@@ -1,7 +1,7 @@
 <div class="ld-project-create-edit">
   <ld-wrapper back='list'>
 
-      <form class="left" onsubmit="createOrEdit()" action="javascript:void(0)">
+      <form class="left" (submit)="createOrEdit()" action="javascript:void(0)">
         <h1 class="main-title" id="main-title"></h1>
 
         <input required id="title" class="ld-input" placeholder="Título" />

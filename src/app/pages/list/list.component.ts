@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ListItem } from './types';
+
 import { environment } from 'src/environments/environment.prod';
 import { ListService } from './service/list.service';
 import { NavigationBehaviorOptions, Router } from '@angular/router';
+import { ProjectItem } from 'src/app/shared/types';
 
 @Component({
   selector: 'app-list',
@@ -10,7 +12,7 @@ import { NavigationBehaviorOptions, Router } from '@angular/router';
   styleUrls: ['./list.component.scss'],
 })
 export class ListComponent implements OnInit {
-  list: ListItem[] = [];
+  list: ProjectItem[] = [];
   isLoadingTable: boolean = true;
 
   constructor(private listService: ListService, private router: Router) {}
@@ -46,7 +48,7 @@ export class ListComponent implements OnInit {
     console.log(idClient);
 
     this.list = this.list.filter(
-      (listItem: ListItem) => listItem.idClient.toString() === idClient
+      (listItem: ProjectItem) => listItem.idClient!.toString() === idClient
     );
   }
 
