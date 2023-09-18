@@ -2,7 +2,7 @@
   <ld-wrapper back='list'>
 
       <form class="left" (submit)="createOrEdit()" action="javascript:void(0)">
-        <h1 class="main-title" id="main-title"></h1>
+        <h1 class="main-title" id="main-title">{{ title }}</h1>
 
         <input required id="title" class="ld-input" placeholder="Título" />
         <input
@@ -18,7 +18,7 @@
           placeholder="Descrição"
         ></textarea>
 
-        <button type="submit" class="ld-button" id="action-button"></button>
+        <ld-button type="submit" class="ld-button" id="action-button" [text]="actionButtonText" ></ld-button>
       </form>
       <div class="right">
         <img

@@ -12,8 +12,8 @@ import { ProjectItem } from 'src/app/shared/types';
 export class CreateEditComponent implements OnInit {
   urlSearchParams: any = new URLSearchParams(window.location.search);
   id!: string;
-
-  // Type: 'create' | 'edit'
+  title: string = '';
+  actionButtonText: string = '';
   screenType!: 'edit' | 'create';
 
   constructor(
@@ -32,8 +32,7 @@ export class CreateEditComponent implements OnInit {
   }
 
   createOrEdit() {
-
-    console.log('sim')
+    console.log('sim');
     // Inicia a massa de dados (payload)
     let payload: ProjectItem = {
       title: (document.querySelector('#title') as any).value,
@@ -80,16 +79,14 @@ export class CreateEditComponent implements OnInit {
   setScreenTypeTexts() {
     // MODO CRIAR
     if (this.screenType == 'create') {
-      (document.querySelector('#main-title') as any).innerText =
-        'Vamos cadastrar seu novo projeto!';
-      (document.querySelector('#action-button') as any).innerText = 'Cadastrar';
+      this.title = 'Vamos cadastrar seu novo projeto';
+      this.actionButtonText = 'Cadastrar';
     }
 
     // MODO EDITAR
     if (this.screenType == 'edit') {
-      (document.querySelector('#main-title') as any).innerText =
-        'Editar projeto';
-      (document.querySelector('#action-button') as any).innerText = 'Salvar';
+      this.title = 'Edite seu projeto';
+      this.actionButtonText = 'Salvar';
     }
   }
 }
