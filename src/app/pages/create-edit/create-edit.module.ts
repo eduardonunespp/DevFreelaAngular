@@ -7,6 +7,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { LdButtonModule } from 'src/app/shared/components/ld-button/ld-button.module';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
+import {
+  NgxMaskPipe,
+  NgxMaskDirective,
+  provideNgxMask,
+  IConfig,
+} from 'ngx-mask';
 
 @NgModule({
   declarations: [CreateEditComponent],
@@ -18,6 +24,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     MatInputModule,
     ReactiveFormsModule,
+    NgxMaskDirective,
+    NgxMaskPipe,
   ],
+  providers: [provideNgxMask()],
 })
 export class CreateEditModule {}

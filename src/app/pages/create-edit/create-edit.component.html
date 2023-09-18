@@ -13,7 +13,7 @@
 
       <mat-form-field class="example-full-width">
         <mat-label>Custo Total</mat-label>
-        <input matInput formControlName="totalCost" />
+        <input matInput formControlName="totalCost" mask="separator.2" thousandSeparator="." />
         <mat-error *ngIf="isInvalid('totalCost', 'required')">
           {{ msg.required }}
         </mat-error>
