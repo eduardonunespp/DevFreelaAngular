@@ -11,7 +11,7 @@
       <mat-form-field class="example-full-width">
         <mat-label>Titulo</mat-label>
         <input matInput formControlName="title" />
-        <mat-error *ngIf="helpers.isInvalid">
+        <mat-error *ngIf="helpers.isInvalid(projectCreateEditForm, 'title', 'required')">
           {{ msg.required }}
         </mat-error>
       </mat-form-field>
@@ -24,7 +24,7 @@
           mask="separator.2"
           thousandSeparator="."
         />
-        <mat-error *ngIf="helpers.isInvalid">
+        <mat-error *ngIf="helpers.isInvalid(projectCreateEditForm, 'totalCost', 'required')">
           {{ msg.required }}
         </mat-error>
       </mat-form-field>
@@ -37,7 +37,7 @@
           placeholder=""
           formControlName="description"
         ></textarea>
-        <mat-error *ngIf="helpers.isInvalid">
+        <mat-error *ngIf="helpers.isInvalid(projectCreateEditForm, 'description', 'required')">
           {{ msg.required }}
         </mat-error>
       </mat-form-field>
