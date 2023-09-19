@@ -1,12 +1,9 @@
-//@ts-nocheck
-
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import Swal from 'sweetalert2';
-import { msg, Helpers } from '../../shared/utils';
-
-import { RegisterService } from './services/service.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { RegisterService } from './services/service.service';
+import { msg, Helpers } from '../../shared/utils';
 
 @Component({
   selector: 'app-register',
@@ -54,12 +51,12 @@ export class RegisterComponent implements OnInit {
             confirmButtonText: 'Ok!',
           }).then((result) => {
             if (result.isConfirmed) {
-              localStorage.setItem('userName', response.fullName);
+              localStorage.setItem('userName', payload.fullName);
               localStorage.setItem(
                 'role',
-                response.role === 'dev' ? 'Desenvolvedor' : 'Cliente'
+                payload.role === 'dev' ? 'Desenvolvedor' : 'Cliente'
               );
-              localStorage.setItem('idClient', response.id);
+              localStorage.setItem('idClient', payload.id);
 
               this.router.navigateByUrl('list');
             }
@@ -78,6 +75,4 @@ export class RegisterComponent implements OnInit {
       this.registerForm.markAllAsTouched();
     }
   }
-
-  // Enviar para API
 }

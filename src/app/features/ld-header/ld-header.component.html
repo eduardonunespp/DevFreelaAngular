@@ -1,36 +1,30 @@
-<!-- <header class="ld-header">
-    <div class="wrapper">
-      <div class="image-wrapper">
+<header class="ld-header">
+  <div class="wrapper -has-user">
+    <div></div>
+
+    <ng-container *ngTemplateOutlet="LogoTemplate"></ng-container>
+
+    <div class="user" *ngIf="hasUser">
+      <div class="info">
+        <span class="name">{{ user.name }}</span>
+        <span class="role">{{ user.role }}</span>
+      </div>
+      <div class="photo-wrapper">
         <img
-          alt="Logo da DevFreela"
-          class="image"
-          src="assets/logo/devfreela.svg"
+          src="https://img.ibxk.com.br/2019/02/17/17124052466014.jpg"
+          alt="Foto do usuário"
         />
       </div>
     </div>
-  </header> -->
-
-  <header class="ld-header">
-    <div class="wrapper -has-user">
-        <div></div>
-
-       <ng-container *ngTemplateOutlet="LogoTemplate"></ng-container>
-
-        <div class="user" *ngIf="hasUser">
-            <div class="info">
-                <span class="name">{{ user.name }}</span>
-                <span class="role">{{ user.role }}</span>
-            </div>
-            <div class="photo-wrapper">
-                <img src="https://img.ibxk.com.br/2019/02/17/17124052466014.jpg" alt="Foto do usuário">
-            </div>
-        </div>
-
-    </div>
+  </div>
 </header>
 
 <ng-template #LogoTemplate>
-    <div class="logo-wrapper">
-        <img alt="Logo da DevFreela" class="image" src="assets/logo/devfreela.svg">
-    </div>
+  <div class="logo-wrapper">
+    <img
+      alt="Logo da DevFreela"
+      class="image"
+      src="assets/logo/devfreela.svg"
+    />
+  </div>
 </ng-template>

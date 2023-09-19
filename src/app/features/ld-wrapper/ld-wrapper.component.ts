@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ldwrapper } from './types';
 import { Router } from '@angular/router';
-
 @Component({
   selector: 'ld-wrapper',
   templateUrl: './ld-wrapper.component.html',

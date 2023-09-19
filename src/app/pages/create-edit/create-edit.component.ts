@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment.prod';
 import { CreateEditService } from './service/create-edit.service';
-import { ProjectItem } from 'src/app/shared/types';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { msg, Helpers } from 'src/app/shared/utils';
 import { ListItem } from '../list/types';
 
@@ -91,13 +90,11 @@ export class CreateEditComponent implements OnInit {
   }
 
   setScreenTypeTexts() {
-    // MODO CRIAR
     if (this.screenType == 'create') {
       this.title = 'Vamos cadastrar seu novo projeto';
       this.actionButtonText = 'Cadastrar';
     }
 
-    // MODO EDITAR
     if (this.screenType == 'edit') {
       this.title = 'Edite seu projeto';
       this.actionButtonText = 'Salvar';

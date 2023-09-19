@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from './types';
-
 @Component({
   selector: 'ld-header',
   templateUrl: './ld-header.component.html',
@@ -9,7 +8,7 @@ import { User } from './types';
 export class LdHeaderComponent implements OnInit {
   hasUser: boolean = true;
 
-  user: User = {}
+  user: User = {};
 
   constructor() {}
 
@@ -26,8 +25,6 @@ export class LdHeaderComponent implements OnInit {
       this.hasUser = false;
     }
   }
-
-
 
   checkIfUserIsLogged() {
     return localStorage.getItem('userName') && localStorage.getItem('role');

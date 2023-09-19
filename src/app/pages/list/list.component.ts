@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ListItem } from './types';
-
-import { environment } from 'src/environments/environment.prod';
-import { ListService } from './service/list.service';
 import { NavigationBehaviorOptions, Router } from '@angular/router';
+import { ListService } from './service/list.service';
 import { ProjectItem } from 'src/app/shared/types';
-
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',

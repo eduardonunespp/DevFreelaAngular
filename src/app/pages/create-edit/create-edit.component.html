@@ -1,6 +1,11 @@
 <div class="ld-project-create-edit">
   <ld-wrapper back="list">
-    <form class="left" (submit)="createOrEdit()" [formGroup]="projectCreateEditForm" action="javascript:void(0)">
+    <form
+      class="left"
+      (submit)="createOrEdit()"
+      [formGroup]="projectCreateEditForm"
+      action="javascript:void(0)"
+    >
       <h1 class="main-title" id="main-title">{{ title }}</h1>
 
       <mat-form-field class="example-full-width">
@@ -13,7 +18,12 @@
 
       <mat-form-field class="example-full-width">
         <mat-label>Custo Total</mat-label>
-        <input matInput formControlName="totalCost" mask="separator.2" thousandSeparator="." />
+        <input
+          matInput
+          formControlName="totalCost"
+          mask="separator.2"
+          thousandSeparator="."
+        />
         <mat-error *ngIf="helpers.isInvalid">
           {{ msg.required }}
         </mat-error>
@@ -22,25 +32,15 @@
       <mat-form-field class="example-full-width">
         <mat-label>Descrição</mat-label>
 
-        <textarea matInput placeholder="" formControlName="description"></textarea>
+        <textarea
+          matInput
+          placeholder=""
+          formControlName="description"
+        ></textarea>
         <mat-error *ngIf="helpers.isInvalid">
           {{ msg.required }}
         </mat-error>
       </mat-form-field>
-
-      <!-- <input required id="title" class="ld-input" placeholder="Título" />
-      <input
-        required
-        id="totalCost"
-        class="ld-input"
-        placeholder="Custo Total"
-      />
-      <textarea
-        required
-        id="description"
-        class="ld-input"
-        placeholder="Descrição"
-      ></textarea> -->
 
       <ld-button
         type="submit"
