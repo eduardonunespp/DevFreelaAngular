@@ -1,17 +1,22 @@
 .ld-project-create-edit {
   .left {
-    max-width: 368px;
+    max-width: 380px;
     margin: auto;
 
     .ld-button {
       margin-top: 40px;
     }
 
+    .example-full-width{
+      width: 108%;
+    }
+
     .main-title {
       font-size: calc(var(--ld-font-size-base) + 32px);
       font-weight: 800;
-      max-width: 300px;
+      max-width: 400px;
       margin-bottom: 40px;
+      text-align: start;
     }
 
   }

@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment.prod';
 import { CreateEditService } from './service/create-edit.service';
 import { ProjectItem } from 'src/app/shared/types';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { msg } from 'src/app/shared/utils';
+import { msg, Helpers } from 'src/app/shared/utils';
 import { ListItem } from '../list/types';
 
 @Component({
@@ -19,6 +19,7 @@ export class CreateEditComponent implements OnInit {
   actionButtonText: string = '';
   screenType!: 'edit' | 'create';
   msg = msg;
+  helpers = Helpers;
 
   constructor(
     private router: Router,
@@ -44,13 +45,6 @@ export class CreateEditComponent implements OnInit {
 
   createOrEdit() {
     if (this.projectCreateEditForm.valid) {
-      // let payload: ProjectItem = {
-      //   title: (document.querySelector('#title') as any).value,
-      //   totalCost: (document.querySelector('#totalCost') as any).value,
-      //   description: (document.querySelector('#description') as any).value,
-      //   idClient: localStorage.getItem('idClient'),
-      // };
-
       let payload: ListItem = this.projectCreateEditForm.value;
       payload.idClient = localStorage.getItem('idClient')!;
 
@@ -76,9 +70,13 @@ export class CreateEditComponent implements OnInit {
 
   fillInputs() {
     if (this.screenType === 'edit') {
-      this.createEditService
-        .getProjectsById(this.id)
-        .subscribe((response) => {});
+      this.createEditService.getProjectsById(this.id).subscribe((project) => {
+        this.projectCreateEditForm.patchValue({
+          title: project.title,
+          totalCost: project.totalCost,
+          description: project.description,
+        });
+      });
 
       fetch(`${environment.apiUrl}/projects/${this.id}`)
         .then((response) => response.json())
@@ -103,16 +101,6 @@ export class CreateEditComponent implements OnInit {
     if (this.screenType == 'edit') {
       this.title = 'Edite seu projeto';
       this.actionButtonText = 'Salvar';
-    }
-  }
-
-  isInvalid(inputName: string, validatorName: string) {
-    const formControl: any = this.projectCreateEditForm.get(inputName);
-    if (formControl.errors !== null) {
-      return (
-        formControl.errors[validatorName] &&
-        this.projectCreateEditForm.get(inputName)?.touched
-      );
     }
   }
 }

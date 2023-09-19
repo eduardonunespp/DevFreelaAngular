@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment.prod';
 export class CreateEditService {
   constructor(private http: HttpClient) {}
   getProjectsById(id: number | string) {
-    return this.http.get(`${environment.apiUrl}/projects/${id}`);
+    return this.http.get<ProjectItem>(`${environment.apiUrl}/projects/${id}`);
   }
 
   postProject(data: ProjectItem) {

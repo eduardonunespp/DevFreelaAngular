@@ -3,11 +3,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
-import { msg } from '../../shared/utils';
-import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment.prod';
+import { msg, Helpers } from '../../shared/utils';
+
 import { RegisterService } from './services/service.service';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -16,6 +15,7 @@ import { Route, Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   msg = msg;
+  helpers = Helpers;
 
   constructor(
     private fb: FormBuilder,
@@ -61,7 +61,7 @@ export class RegisterComponent implements OnInit {
               );
               localStorage.setItem('idClient', response.id);
 
-              this.router.navigateByUrl('list')
+              this.router.navigateByUrl('list');
             }
           });
         },
@@ -79,16 +79,5 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-    // Enviar para API
-  
-
-  isInvalid(inputName: string, validatorName: string) {
-    const formControl: any = this.registerForm.get(inputName);
-    if (formControl.errors !== null) {
-      return (
-        formControl.errors[validatorName] &&
-        this.registerForm.get(inputName)?.touched
-      );
-    }
-  }
+  // Enviar para API
 }
