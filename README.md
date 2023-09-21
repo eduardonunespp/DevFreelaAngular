@@ -1,8 +1,7 @@
 
 <h1></h1>
 
-![WhatsApp Image 2023-07-25 at 12 41 46](https://github.com/eduardonunespp/my-todo/assets/100363170/2174361a-7c51-4bff-af2e-640725ade471)
-
+![WhatsApp Image 2023-09-21 at 09 48 09](https://github.com/eduardonunespp/DevFreelaAngular/assets/100363170/2569e461-d268-49f7-aa91-2cc7aa70a0e8)
 
 <h1></h1>
 
@@ -10,9 +9,9 @@
 
 <div>
  
- <h1>Todo Project</h1>
+ <h1>Dev Freela Project</h1>
  
-Esta é uma aplicação para gerenciar anotações. A aplicação oferece recursos para listar, criar, atualizar e excluir anotações usando o framework Angular desenvolvido junto com o curso <a href="https://www.luisdev.com.br/">Luiz Dev</a> .
+Esta é uma aplicação para gerenciar anotações. A aplicação oferece recursos para listar, criar, atualizar e excluir anotações usando o framework Angular, desenvolvido junto com o curso <strong><a href="https://www.luisdev.com.br/">Luiz Dev</a></strong> .
  
  <h2>Tecnologias utilizadas:</h2>
  
@@ -33,12 +32,6 @@ Esta é uma aplicação para gerenciar anotações. A aplicação oferece recurs
   
  <strong><a href="https://www.figma.com/file/tiCSB5k2WxOkmuZcViV0TT/TODO?node-id=63%3A1950" >Telas no Figma</a></strong> 
   
- <div>
- 
- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" width="100" />
-          
- </div>
-
  </div>
  
  <h2>Funcionalidades</h2>
