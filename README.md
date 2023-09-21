@@ -16,20 +16,14 @@ Esta é uma aplicação para gerenciar anotações. A aplicação oferece recurs
  <h2>Tecnologias utilizadas:</h2>
  
  <div>
-    <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"/>
- </div>
-  <div>
+    <img src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white" />
     <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white"/>
  </div>
-  <div>
-   <img style="block" src="https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white"/>
- </div>
-
+  
  <div>
 
  <h1></h1>
 
-  
  <strong><a href="https://www.figma.com/file/tiCSB5k2WxOkmuZcViV0TT/TODO?node-id=63%3A1950" >Telas no Figma</a></strong> 
   
  </div>
@@ -45,8 +39,9 @@ Esta é uma aplicação para gerenciar anotações. A aplicação oferece recurs
  
  <h2>Pré Requisitos</h2>
   
-- Node.js (versão 16.10.0)
+- Node.js (versão 18.10.0)
 - npm (gerenciador de pacotes do Node.js) ou yarn (opcional)
+- Angular CLI
 
 
 <h2>Instalação</h2>
@@ -55,27 +50,21 @@ Esta é uma aplicação para gerenciar anotações. A aplicação oferece recurs
 - Navegue até o diretório do projeto
 - Instale as dependências com npm install ou yarn add
 
-<h2>Configuração </h2>
-
-Antes de iniciar o servidor, você precisará configurar algumas variáveis de ambiente.
-
-- Crie um arquivo `.env` na raiz do projeto.
-- Defina as seguintes variáveis de ambiente no arquivo `.env`:
-
 Pronto, agora é só iniciar o projeto com yarn start (se estiver usando o yarn)
 
- <hr>
+Obs: O projeto usa uma API em mock
+
+
+
+ <h1></h1>
 
  
- O projeto está disponível em:  <strong> <a href="https://my-todo-blond.vercel.app"> to-do project </a></strong> 
+ O projeto está disponível em:  <strong> <a href="https://dev-freela-angular.vercel.app/"> dev-freela-project </a></strong> 
 🚀
+
+<hr>
  
 </div>
-
-
-
-
-# DevFreelaAngular
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
 
